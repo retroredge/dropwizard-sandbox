@@ -25,11 +25,9 @@ public class GameResourceTest {
     @Test
     public void getsGameMetaData() throws Exception {
         // given
-        Game game = new Game("123", "Pong");
-        Price price = new Price(0.99, "GBP");
-        GameMetaData gameMetaData = new GameMetaData(game, price);
-        when(gameService.getGameMetaData("123")).thenReturn(gameMetaData);
-        GameResponse expectedGameResponse = GameResponse.from(gameMetaData);
+        GameMetaData expectedGameMetaData = new GameMetaData(new Game("123", "Pong"), new Price(0.99, "GBP"));
+        when(gameService.getGameMetaData("123")).thenReturn(expectedGameMetaData);
+        GameResponse expectedGameResponse = GameResponse.from(expectedGameMetaData);
 
         // when
         GameResponse actualGame = resources.client()
