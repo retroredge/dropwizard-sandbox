@@ -9,7 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/game")
+@Path("/games")
 @Produces(MediaType.APPLICATION_JSON)
 public class GameResource {
 
@@ -21,10 +21,10 @@ public class GameResource {
 
     @GET
     @Path("{id}")
-    public GameResponse getGame(@PathParam("id") String id) {
-
-        final GameMetaData gameMetaData = gameService.getGame(id);
+    public GameResponse getGameMetaData(@PathParam("id") String id) {
+        final GameMetaData gameMetaData = gameService.getGameMetaData(id);
         final GameResponse gameResponse = GameResponse.from(gameMetaData);
+
         return gameResponse;
     }
 }

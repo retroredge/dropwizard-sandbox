@@ -8,14 +8,13 @@ import static org.mockito.Mockito.when;
 
 public class GameServiceTest {
 
+    private GameRepository gameRepository = mock(GameRepository.class);
+    private PriceRepository priceRepository = mock(PriceRepository.class);
+    private GameService gameService = new GameService(gameRepository, priceRepository);
+
     @Test
     public void getGameData() {
         // given
-        GameRepository gameRepository = mock(GameRepository.class);
-        PriceRepository priceRepository = mock(PriceRepository.class);
-
-        GameService gameService = new GameService(gameRepository, priceRepository);
-
         Game expectedGame = new Game("123", "Pong");
         when(gameRepository.getById("123")).thenReturn(expectedGame);
 
@@ -25,7 +24,7 @@ public class GameServiceTest {
         GameMetaData expectedGameMetaData = new GameMetaData(expectedGame, expectedPrice);
 
         // when
-        GameMetaData gameMetaData = gameService.getGame("123");
+        GameMetaData gameMetaData = gameService.getGameMetaData("123");
 
         // then
         assertThat(gameMetaData).isEqualTo(expectedGameMetaData);

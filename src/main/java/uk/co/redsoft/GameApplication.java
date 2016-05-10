@@ -6,8 +6,8 @@ import io.dropwizard.setup.Environment;
 import uk.co.redsoft.domain.GameRepository;
 import uk.co.redsoft.domain.GameService;
 import uk.co.redsoft.domain.PriceRepository;
-import uk.co.redsoft.ports.data.DummyGameRepository;
-import uk.co.redsoft.ports.data.DummyPriceRepository;
+import uk.co.redsoft.ports.data.InMemoryGameRepository;
+import uk.co.redsoft.ports.data.InMemoryPriceRepository;
 import uk.co.redsoft.ports.http.GameResource;
 
 public class GameApplication extends Application<AppConfig> {
@@ -27,11 +27,8 @@ public class GameApplication extends Application<AppConfig> {
 
     @Override
     public void run(AppConfig configuration, Environment environment) throws Exception {
-
-        final GameRepository gameRepository = new DummyGameRepository();
-
-        final PriceRepository priceRepository = new DummyPriceRepository();
-
+        final GameRepository gameRepository = new InMemoryGameRepository();
+        final PriceRepository priceRepository = new InMemoryPriceRepository();
         final GameResource gameResource = new GameResource(new GameService(gameRepository, priceRepository));
 
         final GameHealthCheck healthCheck = new GameHealthCheck();

@@ -23,17 +23,17 @@ public class GameResourceTest {
                     .build();
 
     @Test
-    public void getGame_happyPath() throws Exception {
+    public void getsGameMetaData() throws Exception {
         // given
         Game game = new Game("123", "Pong");
         Price price = new Price(0.99, "GBP");
         GameMetaData gameMetaData = new GameMetaData(game, price);
-        when(gameService.getGame("123")).thenReturn(gameMetaData);
+        when(gameService.getGameMetaData("123")).thenReturn(gameMetaData);
         GameResponse expectedGameResponse = GameResponse.from(gameMetaData);
 
         // when
         GameResponse actualGame = resources.client()
-                .target("/game/123")
+                .target("/games/123")
                 .request().get(GameResponse.class);
 
         // then

@@ -6,13 +6,11 @@ public class GameService {
     private final PriceRepository priceRepository;
 
     public GameService(GameRepository gameRepository, PriceRepository priceRepository) {
-
         this.gameRepository = gameRepository;
         this.priceRepository = priceRepository;
     }
 
-    public GameMetaData getGame(String gameId) {
-
+    public GameMetaData getGameMetaData(String gameId) {
         final Game game = gameRepository.getById(gameId);
         final Price price = priceRepository.getPriceForGame(gameId);
 
