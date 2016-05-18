@@ -1,22 +1,18 @@
 package uk.co.redsoft.ports.http;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 import uk.co.redsoft.domain.GameMetaData;
 
 public class GameResponse {
 
-    private final String id;
-    private final String name;
-    private final double price;
-    private final String currency;
+    private String id;
+    private String name;
+    private double price;
+    private String currency;
 
-    @JsonCreator
-    public GameResponse(@JsonProperty("id") String id,
-                        @JsonProperty("name") String name,
-                        @JsonProperty("price") double price,
-                        @JsonProperty("currency") String currency) {
+    private GameResponse() {}
+
+    private GameResponse(String id, String name, double price, String currency) {
         this.id = id;
         this.name = name;
         this.price = price;
