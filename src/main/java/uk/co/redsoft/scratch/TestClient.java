@@ -6,7 +6,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import uk.co.redsoft.ports.http.GameResponse;
+import uk.co.redsoft.ports.http.GetGameResponse;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -23,7 +23,7 @@ public class TestClient {
 
     private static void getWithApacheClient() throws IOException {
         HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpUriRequest getRequest = new HttpGet("http://localhost:8080/games/1");
+        HttpUriRequest getRequest = new HttpGet("http://localhost:8080/games/ff1c10d7-96b3-427c-b16e-db82705121fa");
         HttpResponse response = httpClient.execute(getRequest);
 
         System.out.println(response.getStatusLine().getStatusCode());
@@ -34,11 +34,11 @@ public class TestClient {
         Client client = ClientBuilder.newClient();
         Response response = client
                 .target("http://localhost:8080")
-                .path("games/1")
+                .path("games/ff1c10d7-96b3-427c-b16e-db82705121fa")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get();
 
-        System.out.println(response.readEntity(GameResponse.class));
+        System.out.println(response.readEntity(GetGameResponse.class));
         response.close();
     }
 }

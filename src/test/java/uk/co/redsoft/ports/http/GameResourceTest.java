@@ -25,17 +25,18 @@ public class GameResourceTest {
     @Test
     public void getsGameMetaData() throws Exception {
         // given
-        GameMetaData expectedGameMetaData = new GameMetaData(new Game("123", "Pong"), new Price(0.99, "GBP"));
-        when(gameService.getGameMetaData("123")).thenReturn(expectedGameMetaData);
-        GameResponse expectedGameResponse = GameResponse.from(expectedGameMetaData);
+        GameMetaData expectedGameMetaData =
+                new GameMetaData(new Game("ff1c10d7-96b3-427c-b16e-db82705121fa", "Pong"), new Price(0.99, "GBP"));
+        when(gameService.getGameMetaData("ff1c10d7-96b3-427c-b16e-db82705121fa")).thenReturn(expectedGameMetaData);
+        GetGameResponse expectedGetGameResponse = GetGameResponse.from(expectedGameMetaData);
 
         // when
-        GameResponse actualGame = resources.client()
-                .target("/games/123")
-                .request().get(GameResponse.class);
+        GetGameResponse actualGame = resources.client()
+                .target("/games/ff1c10d7-96b3-427c-b16e-db82705121fa")
+                .request().get(GetGameResponse.class);
 
         // then
-        assertThat(actualGame).isEqualTo(expectedGameResponse);
+        assertThat(actualGame).isEqualTo(expectedGetGameResponse);
     }
 
 }

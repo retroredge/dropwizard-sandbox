@@ -2,18 +2,25 @@ package uk.co.redsoft.domain;
 
 import com.google.common.base.Objects;
 
+import java.util.UUID;
+
 public class Game {
 
-    private final String id;
+    private final UUID id;
     private final String name;
 
     public Game(String id, String name) {
-        this.id = id;
+        this.id = UUID.fromString(id);
+        this.name = name;
+    }
+
+    public Game(String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
     }
 
     public String getId() {
-        return id;
+        return id.toString();
     }
 
     public String getName() {

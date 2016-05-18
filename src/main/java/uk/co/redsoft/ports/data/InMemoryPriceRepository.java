@@ -12,7 +12,7 @@ public class InMemoryPriceRepository implements PriceRepository {
 
     {
         Price price = new Price(1.0, "GBP");
-        store.put("1", price);
+        store.put("ff1c10d7-96b3-427c-b16e-db82705121fa", price);
     }
 
     @Override

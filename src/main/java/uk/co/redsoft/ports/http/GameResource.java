@@ -21,9 +21,9 @@ public class GameResource {
 
     @GET
     @Path("{id}")
-    public GameResponse getGameMetaData(@PathParam("id") String id) {
+    public GetGameResponse getGameMetaData(@PathParam("id") String id) {
         final GameMetaData gameMetaData = gameService.getGameMetaData(id);
 
-        return GameResponse.from(gameMetaData);
+        return GetGameResponse.from(gameMetaData);
     }
 }

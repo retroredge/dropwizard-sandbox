@@ -3,16 +3,16 @@ package uk.co.redsoft.ports.http;
 import com.google.common.base.Objects;
 import uk.co.redsoft.domain.GameMetaData;
 
-public class GameResponse {
+public class GetGameResponse {
 
     private String id;
     private String name;
     private double price;
     private String currency;
 
-    private GameResponse() {}
+    private GetGameResponse() {}
 
-    private GameResponse(String id, String name, double price, String currency) {
+    private GetGameResponse(String id, String name, double price, String currency) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -39,7 +39,7 @@ public class GameResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GameResponse that = (GameResponse) o;
+        GetGameResponse that = (GetGameResponse) o;
         return Objects.equal(price, that.price) &&
                 Objects.equal(id, that.id) &&
                 Objects.equal(name, that.name) &&
@@ -61,8 +61,8 @@ public class GameResponse {
                 '}';
     }
 
-    public static GameResponse from(GameMetaData gameMetaData) {
-        return new GameResponse(
+    public static GetGameResponse from(GameMetaData gameMetaData) {
+        return new GetGameResponse(
                 gameMetaData.getGame().getId(),
                 gameMetaData.getGame().getName(),
                 gameMetaData.getPrice().getPrice(),
