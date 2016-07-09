@@ -1,13 +1,13 @@
 package uk.co.redsoft.ports.http;
 
+import org.apache.http.HttpStatus;
 import uk.co.redsoft.domain.GameMetaData;
 import uk.co.redsoft.domain.GameService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 @Path("/games")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,5 +25,12 @@ public class GameResource {
         final GameMetaData gameMetaData = gameService.getGameMetaData(id);
 
         return GetGameResponse.from(gameMetaData);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createGame(CreateGameRequest createGameRequest) {
+        UUID gameId = gameService.createGame(createGameRequest.toGame());
+        return Response.status(HttpStatus.SC_CREATED).build();
     }
 }

@@ -1,5 +1,7 @@
 package uk.co.redsoft.domain;
 
+import java.util.UUID;
+
 public class GameService {
 
     private final GameRepository gameRepository;
@@ -15,5 +17,9 @@ public class GameService {
         final Price price = priceRepository.getPriceForGame(gameId);
 
         return new GameMetaData(game, price);
+    }
+
+    public UUID createGame(Game game) {
+        return null;
     }
 }

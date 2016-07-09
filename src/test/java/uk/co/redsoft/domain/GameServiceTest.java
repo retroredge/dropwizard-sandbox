@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class GameServiceTest {
+    private static final String GAME_UUID = "ff1c10d7-96b3-427c-b16e-db82705121fa";
 
     private GameRepository gameRepository = mock(GameRepository.class);
     private PriceRepository priceRepository = mock(PriceRepository.class);
@@ -15,16 +16,16 @@ public class GameServiceTest {
     @Test
     public void getGameData() {
         // given
-        Game expectedGame = new Game("123", "Pong");
-        when(gameRepository.getById("123")).thenReturn(expectedGame);
+        Game expectedGame = new Game(GAME_UUID, "Pong");
+        when(gameRepository.getById(GAME_UUID)).thenReturn(expectedGame);
 
         Price expectedPrice = new Price(0.99, "GBP");
-        when(priceRepository.getPriceForGame("123")).thenReturn(expectedPrice);
+        when(priceRepository.getPriceForGame(GAME_UUID)).thenReturn(expectedPrice);
 
         GameMetaData expectedGameMetaData = new GameMetaData(expectedGame, expectedPrice);
 
         // when
-        GameMetaData gameMetaData = gameService.getGameMetaData("123");
+        GameMetaData gameMetaData = gameService.getGameMetaData(GAME_UUID);
 
         // then
         assertThat(gameMetaData).isEqualTo(expectedGameMetaData);

@@ -5,7 +5,6 @@ import com.google.common.base.Objects;
 import java.util.UUID;
 
 public class Game {
-
     private final UUID id;
     private final String name;
 
