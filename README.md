@@ -18,7 +18,7 @@ java -jar target/dropwizard-sandbox-1.0-SNAPSHOT.jar server dropwizard-sandbox.y
 
 Endpoints
 ----
-Application - http://localhost:8080/games/1
+Application - http://localhost:8080/games/ff1c10d7-96b3-427c-b16e-db82705121fa
 Admin - http://localhost:8081/
 
 Run in Docker container
